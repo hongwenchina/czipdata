@@ -166,7 +166,7 @@ if __name__ == '__main__':
     if os.path.exists(filename):
         txt_filename = os.path.abspath(data_dir+os.path.sep+"czipdata.txt")
         if os.path.exists(txt_filename):
-            dat2Txt(txt_filename= txt_filename)
+            #dat2Txt(txt_filename= txt_filename)
             pass
     mysql = mysql_Database(config['mysql'].ip_database)
     dat2Mysql(mysql)
