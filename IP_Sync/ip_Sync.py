@@ -12,7 +12,7 @@ sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 import ipUpdate
 import dat2txt
 from database import mysql_Database
-from configs import config
+from configs import config,default_dat_update
 from dat2mysql import dat2mysql
 from collegeUpdate import collegeUpdate
 from convert import convert
@@ -65,7 +65,7 @@ def dat2Txt(dat_filename= None, txt_filename= None, startIndex= None, endIndex= 
 
     if dat_filename == None:
         dat_filename = os.path.abspath(data_dir+os.path.sep+"czipdata.dat")
-        if not file_set(dat_filename):
+        if not file_set(dat_filename) or default_dat_update:
             down(dat_filename)
     q = dat2txt.IPLoader(dat_filename)
     if txt_filename == None:
@@ -167,7 +167,7 @@ if __name__ == '__main__':
         txt_filename = os.path.abspath(data_dir+os.path.sep+"czipdata.txt")
         if os.path.exists(txt_filename):
             dat2Txt(txt_filename= txt_filename)
-            pass
+            #pass
     mysql = mysql_Database(config['mysql'].ip_database)
     dat2Mysql(mysql)
     convertipv4(mysql)

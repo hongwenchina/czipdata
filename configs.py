@@ -8,7 +8,7 @@
 
 import os
 sqltype = 'mysql' 
-
+default_dat_update = True #执行ip_Sync.py时是否默认联网自动更新czipdata.dat文件, False为默认不更新, 不存在dat文件时该选项失效。
 class mysql(object):
     host="localhost"
     port=3306
