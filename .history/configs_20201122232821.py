@@ -13,7 +13,7 @@ class mysql(object):
     host="localhost"
     port=3306
     user="root"
-    password="123456"
+    password="123546"
     ip_database="czipdata"
     charset="utf8"
     connect_timeout=3
