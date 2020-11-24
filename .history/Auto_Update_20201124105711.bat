@@ -4,11 +4,11 @@ REM %DATE:~0,10%  2020/11/24
 set dd=%DATE:~0,10%
 set tt=%time:~0,8%
 set hour=%tt:~0,2%
-set?ymd=%dd:/=-%
 REM change file directory
 cd /d %~dp0
 REM create log file
-set Log=log\%ymd%.log
+echo =>"log\\%dd%.log"
+set Log="log\\%dd%.log"
 (echo =======================================================
 echo          Starting automatic update czipdata
 echo =======================================================
