@@ -1,7 +1,3 @@
-@echo off
-if "%1" == "h" goto begin
-mshta vbscript:createobject("wscript.shell").run("%~nx0 h",0)(window.close)&&exit
-:begin
 @echo off 
 title =定时同步更新czipdata By A76YYYY
 REM %DATE:~0,10%  2020/11/24
