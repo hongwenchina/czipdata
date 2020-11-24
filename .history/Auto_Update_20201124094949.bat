@@ -8,14 +8,13 @@ cd /d %~dp0
 echo =======================================================
 echo          Starting automatic update czipdata
 echo =======================================================
-REM python ./IP_Sync/ip_Sync.py
+python ./IP_Sync/ip_Sync.py
 echo =======================================================
 echo          Starting automatic git commit push
 echo =======================================================
 REM start git script 
 echo %~dp0
 git status
-git add .
 git commit -m "定时同步 %dd:/=-% %tt%"
 git push origin main
 git push Gitee main
