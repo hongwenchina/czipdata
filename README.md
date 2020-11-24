@@ -12,7 +12,9 @@ Gitee ：[https://gitee.com/a76yyyy/czipdata](https://gitee.com/a76yyyy/czipdata
 2. 将数据文件解析为txt格式；
 3. 将数据文件全量导入mysql中；
 4. 将mysql数据库中的IP数据库内的地址细分为省市区；
-5. 生成sql脚本文件。
+5. 生成sql脚本文件；
+6. 使用BAT文件实现数据库的自动更新和推送；
+7. 结合计划任务可实现windows的定时更新。
 
 # 数据文件
 
@@ -30,7 +32,7 @@ iprange_info.sql|IP数据表sql脚本
 
 1. 将数据文件导入sqlite3数据库db文件中；
 2. 实现数据库的增量更新；
-3. 实现定时更新；
+3. 实现Linux定时更新；
 4. ipv6数据库。
 
 # 图片
