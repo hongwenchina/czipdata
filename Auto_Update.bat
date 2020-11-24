@@ -35,4 +35,3 @@ git commit -m "定时同步 %dd:/=-% %tt%"
 git push origin main
 git push Gitee main
 )>"%Log%"
-pause
