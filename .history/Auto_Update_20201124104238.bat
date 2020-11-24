@@ -6,9 +6,10 @@ set tt=%time:~0,8%
 set hour=%tt:~0,2%
 REM change file directory
 cd /d %~dp0
+md .\log
 REM create log file
-echo =>"log\1.log"
-set Log="log\1.log"
+echo create log file>.\log\Auto_Update_%dd%.log
+set Log=.\log\Auto_Update_%dd%.log
 (echo =======================================================
 echo          Starting automatic update czipdata
 echo =======================================================
