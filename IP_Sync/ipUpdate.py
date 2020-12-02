@@ -129,11 +129,24 @@ def datdown(filename,version_file):
     print('开始检查更新: \n---------------处理中, 请稍候---------------')
     check_time = int(time.time())
     # download copywrite.rar
+    x = 0
     url = 'http://update.cz88.net/ip/copywrite.rar'
     copywrite_file =  os.path.abspath(tmp_dir + os.path.sep + 'copywrite.rar')
     data = fetcher(copywrite_file, url)
     if not data:
-        return -1
+        print('获取信息失败, 正在重试...')
+        data = fetcher(copywrite_file, url)
+        if not data:
+            print('获取信息失败, 尝试从Github获取更新信息!')
+            url = 'https://raw.githubusercontent.com/a76yyyy/czipdata/main/IP_Sync/tmp/copywrite.rar'
+            data = fetcher(copywrite_file, url)
+            x = 1
+            if not data:
+                print('获取信息失败, 尝试从Gitee获取更新信息!')
+                url = 'https://gitee.com/a76yyyy/czipdata/raw/main/IP_Sync/tmp/copywrite.rar'
+                data = fetcher(copywrite_file, url)
+                x = 2
+                return -1
 
     # extract infomation from copywrite.rar
     if len(data) <= 24 or data[:4] != b'CZIP':
@@ -145,7 +158,7 @@ def datdown(filename,version_file):
         logger.error('解析copywrite.rar时出错')
         return -2
     if version == curr_version:
-        noup = '当前数据文件版本 ('+ str(curr_version) + ')无更新！'
+        noup = '当前数据文件版本 ('+ str(curr_version) + ')无更新!'
         logger.info(noup)
         print(noup)
         with open(version_file, "wb+") as handle:
@@ -158,14 +171,22 @@ def datdown(filename,version_file):
     print('开始更新数据文件: '+ filename + '\n---------------处理中, 请稍候---------------')
     # download qqwry.rar
     update_time = int(time.time())
-    url = 'http://update.cz88.net/ip/qqwry.rar'
+    if x == 0:
+        url = 'http://update.cz88.net/ip/qqwry.rar'
+    elif x == 1:
+        url = 'https://raw.githubusercontent.com/a76yyyy/czipdata/main/IP_Sync/tmp/qqwry.rar'
+    elif x == 2:
+        url = 'https://gitee.com/a76yyyy/czipdata/raw/main/IP_Sync/tmp/qqwry.rar'
     qqwry_file =  os.path.abspath(tmp_dir + os.path.sep + 'qqwry.rar')
     data = fetcher(qqwry_file, url)
     if not data:
-        return -3
+        print('下载出错，正在重试...')
+        data = fetcher(qqwry_file, url)
+        if not data:
+            return -3
 
     if size != len(data):
-        logger.error('qqwry.rar文件大小不符合copywrite.rar的数据')
+        logger.error('qqwry.rar文件大小不符合copywrite.rar的数据!')
         return -4
 
     # decrypt
@@ -179,7 +200,7 @@ def datdown(filename,version_file):
     try:
         data = zlib.decompress(data)
     except:
-        logger.error('解压缩qqwry.rar时出错')
+        logger.error('解压缩qqwry.rar时出错!')
         return -5
 
     if filename == None:
@@ -193,10 +214,10 @@ def datdown(filename,version_file):
                 handle.write(struct.pack("<3I", version, check_time, update_time))
             return len(data)
         except:
-            logger.error('保存到最终文件时出错')
+            logger.error('保存到最终文件时出错!')
             return -6
     else:
-        logger.error('保存到最终文件时出错')
+        logger.error('保存到最终文件时出错!')
         return -6
 
 if __name__ == '__main__':

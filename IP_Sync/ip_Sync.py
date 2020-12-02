@@ -46,9 +46,14 @@ def down(filename= None):
         print( "------------------------------------------- \n " )
     elif ret == 0:
         print( "------------------------------------------- \n " )
+        print( "正在退出IP数据库更新任务, 请稍候..." )
+        exit(0)
     else:
         print('写入失败, 错误代码: %d' % ret)
         print( "------------------------------------------- \n " )
+        print( "正在退出IP数据库更新任务, 请稍候..." )
+        exit(1)
+
 
 def dat2Txt(dat_filename= None, txt_filename= None, startIndex= None, endIndex= None):
     """
