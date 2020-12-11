@@ -146,7 +146,9 @@ def datdown(filename,version_file):
                 url = 'https://gitee.com/a76yyyy/czipdata/raw/main/IP_Sync/tmp/copywrite.rar'
                 data = fetcher(copywrite_file, url)
                 x = 2
-                return -1
+                if not data:
+                    print('获取信息失败!')
+                    return -1
 
     # extract infomation from copywrite.rar
     if len(data) <= 24 or data[:4] != b'CZIP':
