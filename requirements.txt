@@ -1,0 +1,6 @@
+myutils==0.0.21
+func_timeout==4.3.5
+PyMySQL==0.10.1
+fuzzywuzzy==0.18.0
+requests==2.23.0
+python-Levenshtein==0.12.0

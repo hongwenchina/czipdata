@@ -142,19 +142,29 @@ def datdown(filename,version_file):
             data = fetcher(copywrite_file, url)
             x = 1
             if not data:
-                print('获取信息失败, 尝试从Gitee获取更新信息!')
-                url = 'https://gitee.com/a76yyyy/czipdata/raw/main/IP_Sync/tmp/copywrite.rar'
+                print('获取信息失败, 尝试从jsdelivr获取更新信息!')
+                url = 'https://cdn.jsdelivr.net/gh/a76yyyy/czipdata@master/IP_Sync/tmp/copywrite.rar'
                 data = fetcher(copywrite_file, url)
                 x = 2
                 if not data:
-                    print('获取信息失败!')
-                    return -1
+                    print('获取信息失败, 尝试从Github镜像站获取更新信息!')
+                    url = 'https://raw.fastgit.org/a76yyyy/czipdata/main/IP_Sync/tmp/copywrite.rar'
+                    data = fetcher(copywrite_file, url)
+                    x = 3
+                    if not data:
+                        print('获取信息失败, 尝试从Gitee获取更新信息!')
+                        url = 'https://gitee.com/a76yyyy/czipdata/raw/main/IP_Sync/tmp/copywrite.rar'
+                        data = fetcher(copywrite_file, url)
+                        x = 4
+                        if not data:
+                            print('获取信息失败!')
+                            return -1
 
     # extract infomation from copywrite.rar
     if len(data) <= 24 or data[:4] != b'CZIP':
         logger.error('解析copywrite.rar时出错')
         return -2
-    version, unknown1, size, unknown2, key = \
+    version, unknown1, size, _ , key = \
         struct.unpack_from('<IIIII', data, 4)
     if unknown1 != 1:
         logger.error('解析copywrite.rar时出错')
@@ -178,6 +188,10 @@ def datdown(filename,version_file):
     elif x == 1:
         url = 'https://raw.githubusercontent.com/a76yyyy/czipdata/main/IP_Sync/tmp/qqwry.rar'
     elif x == 2:
+        url = 'https://cdn.jsdelivr.net/gh/a76yyyy/czipdata@master/IP_Sync/tmp/qqwry.rar'
+    elif x == 3:
+        url = 'https://raw.fastgit.org/a76yyyy/czipdata/main/IP_Sync/tmp/qqwry.rar'
+    elif x == 4:
         url = 'https://gitee.com/a76yyyy/czipdata/raw/main/IP_Sync/tmp/qqwry.rar'
     qqwry_file =  os.path.abspath(tmp_dir + os.path.sep + 'qqwry.rar')
     data = fetcher(qqwry_file, url)

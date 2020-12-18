@@ -12,7 +12,7 @@ sys.path.append(os.path.abspath(os.path.dirname(os.path.dirname(__file__))))
 import ipUpdate
 import dat2txt
 from database import mysql_Database
-from configs import config,default_dat_update
+from configs import config,default_dat_update,default_txt_update,default_sql_update
 from dat2mysql import dat2mysql
 from collegeUpdate import collegeUpdate
 from convert import convert
@@ -32,7 +32,7 @@ def down(filename= None):
     @Returns  :None
     -------
     """
-    varlist = []
+
     if filename == None:
         filename =  os.path.abspath(data_dir+os.path.sep+"czipdata.dat")
         file_set(filename)
@@ -45,14 +45,20 @@ def down(filename= None):
             )
         print( "------------------------------------------- \n " )
     elif ret == 0:
-        print( "------------------------------------------- \n " )
-        print( "正在退出IP数据库更新任务, 请稍候..." )
-        exit(0)
+        print( "-------------------------------------------" )
+        if not default_txt_update:
+            print( "正在退出IP数据库更新任务, 请稍候... \n " )
+            exit(0)
+        else:
+            print()
     else:
         print('写入失败, 错误代码: %d' % ret)
-        print( "------------------------------------------- \n " )
-        print( "正在退出IP数据库更新任务, 请稍候..." )
-        exit(1)
+        print( "-------------------------------------------" )
+        if not default_txt_update:
+            print( "正在退出IP数据库更新任务, 请稍候... \n " )
+            exit(1)
+        else:
+            print()
 
 
 def dat2Txt(dat_filename= None, txt_filename= None, startIndex= None, endIndex= None):
@@ -75,12 +81,12 @@ def dat2Txt(dat_filename= None, txt_filename= None, startIndex= None, endIndex= 
     q = dat2txt.IPLoader(dat_filename)
     if txt_filename == None:
         txt_filename = os.path.abspath(data_dir+os.path.sep+"czipdata.txt")
-        file_set(txt_filename)
     if startIndex == None:
         startIndex = 0
     if endIndex == None:
         endIndex = q.idx_count
-    ip_info = q.get_ip_info(txt_filename,startIndex,endIndex)
+    file_set(txt_filename)
+    q.get_ip_info(txt_filename,startIndex,endIndex)
 
 def dat2Mysql(mysql_object,ip_tablename= None, txt_filename= None):
     """
@@ -172,8 +178,8 @@ if __name__ == '__main__':
         txt_filename = os.path.abspath(data_dir+os.path.sep+"czipdata.txt")
         if os.path.exists(txt_filename):
             dat2Txt(txt_filename= txt_filename)
-            #pass
-    mysql = mysql_Database(config['mysql'].ip_database)
-    dat2Mysql(mysql)
-    convertipv4(mysql)
-    sqldump(mysql)
+    if default_sql_update:
+        mysql = mysql_Database(config['mysql'].ip_database)
+        dat2Mysql(mysql)
+        convertipv4(mysql)
+        sqldump(mysql)

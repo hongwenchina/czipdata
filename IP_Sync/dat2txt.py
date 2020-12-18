@@ -13,6 +13,7 @@ from struct import pack, unpack
 import json
 import getopt
 import ipUpdate
+import ip_Sync
 from file_set import file_set
 import getopt
 
@@ -251,7 +252,7 @@ if __name__ == '__main__':
     if 'dat_filename' not in varlist:
         dat_filename = os.path.abspath(data_dir+os.path.sep+"czipdata.dat")
         if not file_set(dat_filename):
-            ipUpdate.down(dat_filename)
+            ip_Sync.down(dat_filename)
         q = IPLoader(dat_filename)
     if 'txt_filename' not in varlist:
         txt_filename = os.path.abspath(data_dir+os.path.sep+"czipdata.txt")
@@ -260,4 +261,4 @@ if __name__ == '__main__':
         startIndex = 0
     if 'endIndex' not in varlist:
         endIndex = q.idx_count
-    ip_info = q.get_ip_info(txt_filename,startIndex,endIndex)
+    q.get_ip_info(txt_filename,startIndex,endIndex)

@@ -13,6 +13,7 @@ from configs import config
 import socket
 import struct
 import ipUpdate
+import ip_Sync
 from file_set import file_set
 import getopt
 
@@ -128,6 +129,6 @@ if __name__ == '__main__':
     if 'txt_filename' not in varlist:
         txt_filename = os.path.abspath(data_dir+os.path.sep+"czipdata.txt")
         if not file_set(txt_filename):
-            ipUpdate.dat2txt(txt_filename= txt_filename)
+            ip_Sync.dat2Txt(txt_filename= txt_filename)
     mysql_object = mysql_Database(config['mysql'].ip_database)
     dat2mysql(mysql_object,ip_tablename,txt_filename)
