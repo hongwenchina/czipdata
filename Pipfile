@@ -4,6 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+myutils = "==0.0.21"
+func-timeout = "==4.3.5"
+pymysql = "==0.10.1"
+fuzzywuzzy = "==0.18.0"
+requests = "==2.23.0"
+python-levenshtein = "==0.12.0"
 
 [dev-packages]
 

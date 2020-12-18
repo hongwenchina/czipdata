@@ -11,7 +11,7 @@
 [![](https://img.shields.io/github/last-commit/a76yyyy/czipdata)](https://github.com/a76yyyy/czipdata/)
 [![](https://img.shields.io/github/commit-activity/m/a76yyyy/czipdata)](https://github.com/a76yyyy/czipdata/)
 ![](https://img.shields.io/github/repo-size/a76yyyy/czipdata)
-![](https://img.shields.io/github/languages/top/a76yyyy/czipdata)
+![](https://img.shields.io/github/pipenv/locked/python-version/a76yyyy/czipdata)
 
 纯真IP数据库镜像及mysql同步更新 for Python
 
