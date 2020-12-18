@@ -1,4 +1,16 @@
+<img align="right" src="https://github-readme-stats.vercel.app/api?username=a76yyyy&show_icons=true&icon_color=CE1D2D&text_color=718096&bg_color=ffffff&hide_title=true" />
+
 # czipdata
+
+[![](https://img.shields.io/github/stars/a76yyyy/czipdata?style=social)](https://github.com/a76yyyy/czipdata/stargazers) 
+[![](https://img.shields.io/github/watchers/a76yyyy/czipdata?style=social)](https://github.com/a76yyyy/czipdata/watchers)
+[![](https://img.shields.io/github/forks/a76yyyy/czipdata?style=social)](https://github.com/a76yyyy/czipdata/network/members)
+
+[![](https://img.shields.io/badge/HomePage-a76yyyy-brightgreen)](https://www.a76yyyy.cn) 
+[![](https://img.shields.io/github/license/a76yyyy/czipdata)](https://github.com/a76yyyy/czipdata/blob/main/LICENSE) 
+![](https://img.shields.io/github/repo-size/a76yyyy/czipdata)
+![](https://img.shields.io/github/languages/count/a76yyyy/czipdata)
+![](https://img.shields.io/github/languages/top/a76yyyy/czipdata)
 
 纯真IP数据库镜像及mysql同步更新 for Python
 
