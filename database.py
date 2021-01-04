@@ -86,8 +86,6 @@ class mysql_Database(object):
 
 class sqlite3_Database(object):
     
-    
-
     def __init__(self,db_file):
         if os.path.isfile(db_file):
             os.remove(db_file)
